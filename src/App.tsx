@@ -120,23 +120,26 @@ export default () => {
               marginRight: "auto",
             }}
           >
-            <div>パターン１</div>
+            <div>距離</div>
             <div>
-              <select style={{ height: "1.25rem" }}>
-                <option value="">東京</option>
-                <option value="">愛知</option>
-                <option value="">大阪</option>
-                <option value="">ロンドン</option>
-                <option value="">ワシントン</option>
-              </select>
-              <button
-                onClick={() => {
-                  window.open("http://google.com/");
-                }}
-                style={{ marginLeft: "1rem" }}
-              >
-                遷移実行
-              </button>
+              <div>{`愛知までの距離 : ${calcDistance(
+                position.latitude,
+                position.longitude,
+                positionAichi[0],
+                positionAichi[1]
+              )}`}</div>
+              <div>{`大阪までの距離 : ${calcDistance(
+                position.latitude,
+                position.longitude,
+                positionOsaka[0],
+                positionOsaka[1]
+              )}`}</div>
+              <div>{`ロンドンまでの距離 : ${calcDistance(
+                position.latitude,
+                position.longitude,
+                positionLondon[0],
+                positionLondon[1]
+              )}`}</div>
             </div>
           </div>
           <hr />
@@ -148,45 +151,18 @@ export default () => {
               marginRight: "auto",
             }}
           >
-            パターン２
+            地図
           </div>
-          <Map center={[positionCurrent[0], positionCurrent[1]]} zoom={zoom}>
+          <Map center={[position.latitude, position.longitude]} zoom={zoom}>
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Marker
-              position={[positionCurrent[0], positionCurrent[1]]}
+              position={[position.latitude, position.longitude]}
               icon={pointerIcon}
             >
               <Popup>現在地</Popup>
-            </Marker>
-            <Marker position={[positionDC[0], positionDC[1]]}>
-              <Popup>
-                ワシントン
-                <br />
-                <a href="http://google.co.jp" target="_blank">
-                  ここをクリック
-                </a>
-              </Popup>
-            </Marker>
-            <Marker position={[positionLondon[0], positionLondon[1]]}>
-              <Popup>
-                ロンドン
-                <br />
-                <a href="http://google.co.jp" target="_blank">
-                  ここをクリック
-                </a>
-              </Popup>
-            </Marker>
-            <Marker position={[positionTokyo[0], positionTokyo[1]]}>
-              <Popup>
-                東京
-                <br />
-                <a href="http://google.co.jp" target="_blank">
-                  ここをクリック
-                </a>
-              </Popup>
             </Marker>
             <Marker position={[positionAichi[0], positionAichi[1]]}>
               <Popup>
